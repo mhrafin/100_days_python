@@ -6,15 +6,41 @@ def turn_right():
     turn_left()
     turn_left()
     turn_left()
+
+def turn_around():
+    turn_left()
+    turn_left()
+    
     
 while not at_goal():
-    print(not at_goal())
-    if wall_on_right():
-        print(front_is_clear() and wall_on_right())
+    while not wall_on_right():
+        if is_facing_north() and not front_is_clear():
+            turn_right()
+            while front_is_clear():
+                move()
+        if not is_facing_north() and front_is_clear():
+            turn_right()
+            if front_is_clear():
+                move()
+        if front_is_clear():
+            move()
+        else:
+            turn_right()
+            if front_is_clear():
+                move()
+    while wall_on_right():
         if front_is_clear():
             move()
         else:
             turn_left()
-    else:
-        turn_right()
-        move()
+            if front_is_clear():
+                move()
+            
+            
+        
+        
+        
+        
+        
+    
+    
