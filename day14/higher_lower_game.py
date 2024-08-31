@@ -1,8 +1,10 @@
 import random
 import textwrap
-import tv_show_list
-from os import system,name
+from os import name, system
 from sys import exit
+
+import tv_show_list
+
 
 def main():
     logo()
@@ -18,17 +20,17 @@ def main():
     while item_a["episodes"] == item_b["episodes"]:
         item_b = random.choice(tv_show_list.tv_shows)
         wrapped_description_b = textwrap.fill(item_b["description"])
-    
+
     while True:
-        #Show items and ask
+        # Show items and ask
         print(f"Compare A: \n{item_a['name']}, \n{wrapped_description_a}")
-        print(r'''
+        print(r"""
  _    _ _______
   \  /  |______
    \/   ______|
-''')
+""")
         print(f"Against B: \n{item_b['name']}, \n{wrapped_description_b}\n")
-        print("Does B has Higher or Lower no. of epidsodes than A.")
+        print("Does B has Higher or Lower no. of episodes than A.")
         ans = input("Type 'Higher' or 'Lower'\n").lower()
 
         if ans == "higher":
@@ -70,9 +72,9 @@ def main():
         else:
             exit(0)
 
- 
+
 def logo():
-    print(r'''
+    print(r"""
  _     _ _____  ______ _     _ _______  ______
  |_____|   |   |  ____ |_____| |______ |_____/
  |     | __|__ |_____| |     | |______ |    \_
@@ -80,8 +82,8 @@ def logo():
          _____  _  _  _ _______  ______       
  |      |     | |  |  | |______ |_____/       
  |_____ |_____| |__|__| |______ |    \_       
-''')
-    
-    
+""")
+
+
 if __name__ == "__main__":
     main()

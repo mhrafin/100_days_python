@@ -1,0 +1,4 @@
+[lint]
+select = ["F","E"]
+ignore = ["E5"]
+preview = true
