@@ -1,0 +1,113 @@
+# question_data = [
+#     {"text": "A slug's blood is green.", "answer": "True"},
+#     {"text": "The loudest animal is the African Elephant.", "answer": "False"},
+#     {
+#         "text": "Approximately one quarter of human bones are in the feet.",
+#         "answer": "True",
+#     },
+#     {
+#         "text": "The total surface area of a human lungs is the size of a football pitch.",
+#         "answer": "True",
+#     },
+#     {
+#         "text": "In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.",
+#         "answer": "True",
+#     },
+#     {
+#         "text": "In London, UK, if you happen to die in the House of Parliament, you are entitled to a state funeral.",
+#         "answer": "False",
+#     },
+#     {"text": "It is illegal to pee in the Ocean in Portugal.", "answer": "True"},
+#     {"text": "You can lead a cow down stairs but not up stairs.", "answer": "False"},
+#     {"text": "Google was originally called 'Backrub'.", "answer": "True"},
+#     {"text": "Buzz Aldrin's mother's maiden name was 'Moon'.", "answer": "True"},
+#     {
+#         "text": "No piece of square dry paper can be folded in half more than 7 times.",
+#         "answer": "False",
+#     },
+#     {"text": "A few ounces of chocolate can to kill a small dog.", "answer": "True"},
+# ]
+
+
+question_data = [
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "General Knowledge",
+        "question": "You can legally drink alcohol while driving in Mississippi.",
+        "correct_answer": "True",
+        "incorrect_answers": ["False"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "General Knowledge",
+        "question": "Vietnam&#039;s national flag is a red star in front of a yellow background.",
+        "correct_answer": "False",
+        "incorrect_answers": ["True"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "Entertainment: Film",
+        "question": "Matt Damon played an astronaut stranded on an extraterrestrial planet in both of the movies Interstellar and The Martian.",
+        "correct_answer": "True",
+        "incorrect_answers": ["False"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "Entertainment: Video Games",
+        "question": "Deus Ex (2000) does not feature the World Trade Center because it was destroyed by terrorist attacks according to the game&#039;s plot.",
+        "correct_answer": "True",
+        "incorrect_answers": ["False"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "Entertainment: Film",
+        "question": "The film &quot;2001: A Space Odyssey&quot; was released on December 31st, 2000.",
+        "correct_answer": "False",
+        "incorrect_answers": ["True"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "Entertainment: Japanese Anime &amp; Manga",
+        "question": "Studio Ghibli is a Japanese animation studio responsible for the films &quot;Wolf Children&quot; and &quot;The Boy and the Beast&quot;.",
+        "correct_answer": "False",
+        "incorrect_answers": ["True"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "General Knowledge",
+        "question": "Slovakia is a member of European Union-",
+        "correct_answer": "True",
+        "incorrect_answers": ["False"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "Entertainment: Video Games",
+        "question": "Valve&#039;s &quot;Portal&quot; and &quot;Half-Life&quot; franchises exist within the same in-game universe.",
+        "correct_answer": "True",
+        "incorrect_answers": ["False"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "Entertainment: Comics",
+        "question": "Deadpool's identity is Slade Wilson.",
+        "correct_answer": "False",
+        "incorrect_answers": ["True"],
+    },
+    {
+        "type": "boolean",
+        "difficulty": "easy",
+        "category": "Entertainment: Music",
+        "question": "The music group Daft Punk got their name from a negative review they received.",
+        "correct_answer": "True",
+        "incorrect_answers": ["False"],
+    },
+]
