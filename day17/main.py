@@ -1,5 +1,9 @@
+import os
+
 import question_model
 from quiz_brain import QuizBrain
+
+os.system("cls" if os.name == "nt" else "clear")
 
 question_bank = question_model.create_questions()
 quizzer = QuizBrain(question_bank)

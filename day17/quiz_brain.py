@@ -1,11 +1,15 @@
+from question_model import Question
+
+
 class QuizBrain:
-    def __init__(self, question_list) -> None:
+    def __init__(self, question_list: list) -> None:
         self.question_no = 0
         self.list_of_Question_objects = question_list
         self.score = 0
 
     def next_question(self):
-        current_question = self.list_of_Question_objects[self.question_no]
+        """Asks the current question. Records the user answer from input and checks the answer."""
+        current_question: Question = self.list_of_Question_objects[self.question_no]
 
         self.question_no += 1
 
@@ -16,7 +20,8 @@ class QuizBrain:
 
         self.check_answer(user_answer, current_question)
 
-    def check_answer(self, user_answer, current_question):
+    def check_answer(self, user_answer, current_question: Question):
+        """Checks the answer. Takes in user's answer as str and current question as Question object."""
         if user_answer == current_question.answer.lower():
             self.score += 1
             print("You got it right!")
