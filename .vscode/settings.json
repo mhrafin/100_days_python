@@ -4,6 +4,8 @@
         "exitonclick",
         "hirst",
         "startx",
-        "starty"
+        "starty",
+        "xaxis",
+        "yaxis"
     ]
 }
