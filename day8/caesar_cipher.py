@@ -6,26 +6,43 @@ print("""
  \____\__,_|\___||___/\___|_|     \____|_| .__/|_| |_|\___|_|   
                                          |_|                    
 """)
-def encode(plain: str,key: int):
+
+
+def encode(plain: str, key: int):
     cipher = ""
-    if plain.isalpha():
-        cipher = chr(ord(plain)+key)
-    if cipher > "z" and plain.islower():
-        cipher = chr(ord(cipher)-26)
-    elif cipher > "Z" and plain.isupper():
-        cipher = chr(ord(cipher)-26)
+    if key > 26:
+        key = key % 26
+
+    if ord(plain) in range(ord("a"), ord("z") + 1):
+        cipher = chr(ord(plain) + key)
+        if ord(cipher) not in range(ord("a"), ord("z") + 1):
+            cipher = chr(ord(cipher) - 26)
+
+    if ord(plain) in range(ord("A"), ord("Z") + 1):
+        cipher = chr(ord(plain) + key)
+        if ord(cipher) not in range(ord("A"), ord("Z") + 1):
+            cipher = chr(ord(cipher) - 26)
+
     return cipher
 
-def decode(cipher: str,key: int):
+
+def decode(cipher: str, key: int):
     plain = ""
-    if cipher.isalpha():
-        plain = chr(ord(cipher)-key)
-    if plain > "z" and cipher.islower():
-        plain = chr(ord(plain)+26)
-    elif plain > "Z" and cipher.isupper():
-        plain = chr(ord(plain)+26)
+    if key > 26:
+        key = key % 26
+
+    if ord(cipher) in range(ord("a"), ord("z") + 1):
+        plain = chr(ord(cipher) - key)
+        if ord(plain) not in range(ord("a"), ord("z") + 1):
+            plain = chr(ord(plain) + 26)
+
+    if ord(cipher) in range(ord("A"), ord("Z") + 1):
+        plain = chr(ord(cipher) - key)
+        if ord(plain) not in range(ord("A"), ord("Z") + 1):
+            plain = chr(ord(plain) + 26)
+
     return plain
-#nbifej IBTTBO sbgJO
+
 
 mode = ""
 while mode != "quit":
@@ -40,7 +57,7 @@ while mode != "quit":
             if not letter.isalpha():
                 cipher_text += letter
                 continue
-            cipher_text += encode(letter,p_shift_key)
+            cipher_text += encode(letter, p_shift_key)
         print(cipher_text)
 
     if mode == "decode":
@@ -52,6 +69,5 @@ while mode != "quit":
             if not letter.isalpha():
                 plain_text += letter
                 continue
-            plain_text += decode(letter,p_shift_key)
+            plain_text += decode(letter, p_shift_key)
         print(plain_text)
-
