@@ -45,19 +45,28 @@ class Snake:
             part.goto(new_x, new_y)
             new_x = old_x
             new_y = old_y
+        self.turn_need = True
 
     def turn_up(self):
-        if self.snake_head.heading() != 270.0:
+        if self.snake_head.heading() != 270 and self.turn_need:
             self.snake_head.setheading(90)
+            print("up")
+            self.turn_need = False
 
     def turn_down(self):
-        if self.snake_head.heading() != 90.0:
+        if self.snake_head.heading() != 90 and self.turn_need:
             self.snake_head.setheading(270)
+            print("down")
+            self.turn_need = False
 
     def turn_left(self):
-        if self.snake_head.heading() != 0.0:
+        if self.snake_head.heading() != 0 and self.turn_need:
             self.snake_head.setheading(180)
+            print("left")
+            self.turn_need = False
 
     def turn_right(self):
-        if self.snake_head.heading() != 180.0:
+        if self.snake_head.heading() != 180 and self.turn_need:
             self.snake_head.setheading(0)
+            print("right")
+            self.turn_need = False
