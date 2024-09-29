@@ -7,7 +7,9 @@
 	"settings": {
 		"cSpell.words": [
 			"exitonclick",
-			"Ghor"
+			"Ghor",
+			"startx",
+			"starty"
 		],
 		"cSpell.enableFiletypes": [
 			"python"

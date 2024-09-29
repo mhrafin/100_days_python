@@ -1,11 +1,13 @@
+import random
+import time
 from turtle import Screen
+
 import bar
 from ball import Ball
-import time
+from scoreboard import Scoreboard
 
 
 def main():
-    # - It needs a rectangle black screen.
     screen = Screen()
     screen.bgcolor("black")
     screen.title("Ping Pong Ghor")
@@ -13,37 +15,102 @@ def main():
     screen.tracer(n=0, delay=1)
     screen.listen()
 
-    # - There will be a bar class.
-    #     - From that class we will have a two objects of bar one on left and right.
     player_one = bar.Bar(1)
     player_two = bar.Bar(2)
-    # - There will a ball class which will inherit turtle module.
+
     ball = Ball()
 
+    the_scoreboard = Scoreboard()
+    the_scoreboard.write(
+        f"P1 {ball.p1_score} | {ball.p2_score} P2",
+        False,
+        align="center",
+        font=("Courier", 16, "normal"),
+    )
+
+    the_scoreboard.status = False
+    global game_on
     game_on = True
-    while game_on:
-        time.sleep(0.1)
+
+    def game_over():
+        the_scoreboard.goto(0, 0)
+        the_scoreboard.write(
+            "GAME OVER!",
+            False,
+            align="center",
+            font=("Courier", 16, "normal"),
+        )
+        global game_on
+        game_on = False
+
+    screen.onkeypress(fun=player_one.move_up, key="w")
+    screen.onkeypress(fun=player_one.move_down, key="s")
+    screen.onkeypress(fun=player_two.move_up, key="Up")
+    screen.onkeypress(fun=player_two.move_down, key="Down")
+    screen.onkeypress(fun=game_over, key="x")
+
+    while game_on is True:
+        time.sleep(0.01)
         screen.update()
-        #     - make bar move with w and s.
-        screen.onkeypress(fun=player_one.move_up, key="w")
-        screen.onkeypress(fun=player_one.move_down, key="s")
-        screen.onkeypress(fun=player_two.move_up, key="Up")
-        screen.onkeypress(fun=player_two.move_down, key="Down")
+        if not the_scoreboard.status:
+            the_scoreboard.clear()
+            the_scoreboard.write(
+                f"{ball.p1_score} | {ball.p2_score}",
+                False,
+                align="center",
+                font=("Courier", 28, "normal"),
+            )
+            the_scoreboard.status = True
+            screen.update()
 
-        #   - move the ball
         ball.move_ball()
-        #   - Bounce off up and down wall
-        #   - Bounce off bar
-        dist_bar_one = player_one.bar.distance(ball)
-        print(dist_bar_one)
-        dist_bar_two = player_two.bar.distance(ball)
-        print(dist_bar_two)
 
-        #   - End Game if touched right or left wall
+        if player_one.bar.distance(ball) < 50 and ball.xcor() < -560:
+            # print(f"p1 to ball = {player_one.bar.distance(ball)}")
+            if ball.heading() < 160 and ball.heading() > 90:
+                angle = ball.heading() - 90
+            elif ball.heading() > 200 and ball.heading() < 270:
+                angle = ball.heading() + 90
+            else:
+                angle = random.choice([21, 19, 341, 339])
+            ball.bounce_off_bar(angle)
+            ball.forward(10)
+            # ball.p1_score += 1
+            the_scoreboard.status = False
 
-    # - keep track of score for each player and display it. Maybe make score class?
+        elif player_two.bar.distance(ball) < 50 and ball.xcor() > 560:
+            # print(f"p2 to ball = {player_two.bar.distance(ball)}")
+            if ball.heading() > 20 and ball.heading() < 90:
+                # print(1)
+                angle = ball.heading() + 90
+            elif ball.heading() < 340 and ball.heading() > 270:
+                # print(2)
+                angle = ball.heading() - 90
+            else:
+                # print(3)
+                angle = random.choice([159, 161, 199, 201])
+            # print(f"angle {angle}")
+            ball.bounce_off_bar(angle)
+            ball.forward(10)
+            # ball.p1_score += 1
+            the_scoreboard.status = False
+
+        if ball.xcor() > 580:
+            # print(ball.xcor())
+            ball.p1_score += 1
+            the_scoreboard.status = False
+            ball.goto(0, 0)
+            ball.ball_speed = 2.5
+            ball.setheading(random.choice(range(0, 361, 65)))
+        elif ball.xcor() < -580:
+            # print(ball.xcor())
+            ball.p2_score += 1
+            the_scoreboard.status = False
+            ball.goto(0, 0)
+            ball.ball_speed = 2.5
+            ball.setheading(random.choice(range(0, 361, 65)))
+
     screen.exitonclick()
-    pass
 
 
 if __name__ == "__main__":

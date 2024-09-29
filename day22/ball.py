@@ -1,5 +1,4 @@
 from turtle import Turtle
-import time
 
 
 class Ball(Turtle):
@@ -9,33 +8,34 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.game_over = False
+        self.p1_score = 0
+        self.p2_score = 0
+        self.ball_speed = 2.5
 
         # print(self.heading())
         # self.setheading(315)
         # print(self.heading())
 
     def move_ball(self):
-        self.forward(10)
-        # time.sleep(0.1)
-        # print(f"(x,y): {self.xcor()},{self.ycor()}")
-        if self.ycor() > 350:
-            self.up_wall()
-        elif self.ycor() < -350:
-            self.down_wall()
+        self.forward(self.ball_speed)
+        # print(self.ball_speed)
+        # print(self.game_over)
+        # print(self.xcor())
 
-    def up_wall(self):
-        heading = self.heading()
-        now_head_to = 270 - (heading - 90)
-        self.setheading(now_head_to)
+        if self.ycor() > 350 or self.ycor() < -350:
+            self.up_down_wall()
 
-    def down_wall(self):
+    def up_down_wall(self):
         heading = self.heading()
-        now_head_to = heading - 270
+        now_head_to = 360 - heading
         self.setheading(now_head_to)
+        self.ball_speed *= 1.01
 
     def left_right_wall(self):
-        if self.xcor() > 600 or self.xcor() < -600:
-            self.game_over = True
+        self.game_over = True
 
-    def bounce_off_bar():
-        pass
+    def bounce_off_bar(self, angle=0):
+        # print(self.heading())
+        self.setheading(angle)
+        # print(self.heading())
+        self.ball_speed *= 1.02

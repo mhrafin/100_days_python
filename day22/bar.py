@@ -1,5 +1,4 @@
 from turtle import Turtle
-import time
 
 
 class Bar:
@@ -10,6 +9,8 @@ class Bar:
         elif player_no == 2:
             self.player_two = True
         self.make_bar()
+        self.max_y_pos = 330
+        self.max_y_neg = -330
         pass
 
     def make_bar(self):
@@ -30,9 +31,11 @@ class Bar:
         self.bar.setheading(90)
 
     def move_up(self):
-        self.bar.setheading(90)
-        self.bar.forward(20)
+        if self.max_y_pos > self.bar.ycor():
+            self.bar.setheading(90)
+            self.bar.forward(30)
 
     def move_down(self):
-        self.bar.setheading(270)
-        self.bar.forward(20)
+        if self.max_y_neg < self.bar.ycor():
+            self.bar.setheading(270)
+            self.bar.forward(30)
