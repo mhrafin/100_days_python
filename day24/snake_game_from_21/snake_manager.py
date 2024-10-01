@@ -70,3 +70,23 @@ class Snake:
             self.snake_head.setheading(0)
             # print("right")
             self.turn_need = False
+
+    def reset_snake(self):
+        for part in self.snake_parts:
+            part.hideturtle()
+
+        # print(self.snake_parts)
+        self.snake_parts.clear()
+        # print(self.snake_parts)
+        a_turtle = Turtle()
+        a_turtle.shape("square")
+        a_turtle.color("white")
+        a_turtle.penup()
+        a_turtle.speed("fastest")
+        # print(a_turtle.position())
+        self.snake_parts.append(a_turtle)
+        self.snake_head = self.snake_parts[0]
+
+        for _ in range(self.snake_parts_count - 1):
+            self.make_a_snake_part()
+            self.move_snake()
