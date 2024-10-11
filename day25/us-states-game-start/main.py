@@ -28,9 +28,10 @@ def main():
     while len(guessed_states) < 50:
         player_guess: str = (
             screen.textinput(
-                title=f"{len(guessed_states)}/50 Times Guessed", prompt="What's another state name?"
+                title=f"{len(guessed_states)}/50 Times Guessed",
+                prompt="What's another state name?",
             )
-        ).title()
+        ).title()  # type: ignore
         # print(player_guess)
 
         if player_guess == "Exit":
@@ -55,7 +56,7 @@ def main():
             state_turtles[state_name].goto(cor_x, cor_y)
             state_turtles[state_name].write(f"{state_name}")
 
-    with open('day25/us-states-game-start/Result.csv', 'w'):
+    with open("day25/us-states-game-start/Result.csv", "w"):
         pass
     with open("day25/us-states-game-start/Result.csv", mode="a") as result_file:
         result_file.write("Your missed states:\n")
