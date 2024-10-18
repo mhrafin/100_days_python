@@ -9,6 +9,9 @@
 			"exitonclick",
 			"Ghor",
 			"highscore",
+			"padx",
+			"pady",
+			"pyperclip",
 			"startx",
 			"starty"
 		],
