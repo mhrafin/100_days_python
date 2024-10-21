@@ -1,3 +1,4 @@
+import json
 import random
 import tkinter as tk
 from tkinter import messagebox
@@ -82,9 +83,11 @@ def generate_pass():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    website_data = website_input.get()
+    website_data = website_input.get().lower()
     email_data = email_input.get()
     password_data = password_input.get()
+
+    new_data = {website_data: {"email": email_data, "password": password_data}}
 
     if len(website_data) == 0 or len(email_data) == 0 or len(password_data) == 0:
         messagebox.showinfo(
@@ -97,13 +100,54 @@ def save():
             message=f"These are the details entered: \nWebsite: {website_data}\nEmail: {email_data}\nPassword: {password_data}\nIs it Ok to Save?",
         )
     if confirmed:
-        with open("day29_30/data.txt", mode="a") as data_file:
-            new_data = f"{website_data} | {email_data} | {password_data}\n"
-            data_file.write(new_data)
+        try:
+            with open("day29_30/data.json", mode="r") as data_file:
+                data = json.load(data_file)
+                data.update(new_data)
+            with open("day29_30/data.json", mode="w") as data_file:
+                json.dump(data, data_file, indent=4)
+        except FileNotFoundError:
+            with open("day29_30/data.json", mode="w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        except json.decoder.JSONDecodeError:
+            with open("day29_30/data.json", mode="w") as data_file:
+                json.dump(new_data, data_file, indent=4)
 
         website_input.delete(0, "end")
         email_input.delete(0, "end")
         password_input.delete(0, "end")
+
+
+# ---------------------------- Search ------------------------------- #
+def search():
+    website_data = website_input.get().lower()
+
+    try:
+        with open("day29_30/data.json", mode="r") as data_file:
+            data = json.load(data_file)
+            try:
+                record = data[website_data]
+            except KeyError:
+                messagebox.showinfo(title="No Data", message="No such entry exist.")
+                return
+            else:
+                email_data = record["email"]
+                password_data = record["password"]
+    except FileNotFoundError:
+        return
+
+    if len(website_data) == 0:
+        messagebox.showinfo(
+            title="Empty Field", message="Do not leave Website field empty."
+        )
+
+    else:
+        messagebox.showinfo(
+            title=website_data,
+            message=f"Email: {email_data}\nPassword: {password_data}",
+        )
+
+    pyperclip.copy(password_data)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -120,9 +164,12 @@ canvas.grid(column=0, row=0, columnspan=3)
 
 website_text = tk.Label(text="Website:")
 website_text.grid(column=0, row=1)
-website_input = tk.Entry(width=37)
+website_input = tk.Entry(width=22)
 website_input.focus()
-website_input.grid(column=1, row=1, columnspan=2)
+website_input.grid(column=1, row=1)
+
+search_button = tk.Button(text="Search", height=0, width=12, command=search)
+search_button.grid(column=2, row=1)
 
 email_text = tk.Label(text="Email/Username:")
 email_text.grid(column=0, row=2)
