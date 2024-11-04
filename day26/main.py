@@ -4,6 +4,7 @@ data = pandas.read_csv("day26/nato_phonetic_alphabet.csv", index_col=False)
 
 
 data_dict = {row.letter: row.code for (index, row) in data.iterrows()}
+print(data_dict)
 
 
 while True:
