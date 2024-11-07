@@ -1,11 +1,11 @@
 import os
+from pprint import pp
 
 import requests
 import spotipy
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyOAuth
-from pprint import pp
 
 load_dotenv()
 
