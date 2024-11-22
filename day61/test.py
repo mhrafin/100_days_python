@@ -1,2 +1,3 @@
-from flask import Flask
-print(Flask.secret_key())
+l = [10,11,12,13]
+
+print(l[1:])
