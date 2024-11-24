@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Select Movie{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="heading">Select Movie</h1>
+  <p>
+    <a href="#"> MOVIE TITLE - MOVIE RELEASE DATE</a>
+  </p>
+
+  {% for movie_data in data %}
+  <ul>
+    <li>
+      <a href="{{ url_for('add_to_db', id=movie_data['id']) }}">{{movie_data["original_title"]}}</a>
+    </li>
+  </ul>
+  {% endfor %}
+  <a class="btn btn-primary" href="{{url_for('add')}}" role="button">Search Again</a>
+
+</div>
+{% endblock %}
