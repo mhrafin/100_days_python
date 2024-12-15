@@ -8,7 +8,7 @@ def calculate():
     from_ = combo1.get()
     from_int = float(input.get())
 
-    to = combo2.get()   
+    to = combo2.get()
     output = 0
 
     if from_ == to:
@@ -29,7 +29,7 @@ window.config(padx=50, pady=50)
 
 title = Label(text="Converter", font=("Arial", 16, "bold"))
 title.grid(column=0, row=0, columnspan=3)
-title.config( pady=20)
+title.config(pady=20)
 
 input = Entry(width=5)
 input.grid(column=1, row=1)
